@@ -148,7 +148,7 @@ public class ListadoFragment extends Fragment {
                 Toast.makeText(getActivity(), "ningun resultado", Toast.LENGTH_SHORT).show();
             }
         }catch (Exception e){
-            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+
         }
     }
 
@@ -214,7 +214,7 @@ public class ListadoFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Variables.id=listaLugares.get(recycler.getChildAdapterPosition(v)).getId();
-                        if (Variables.land=true){
+                        if (Variables.land==true){
                             cargarDetalle();
                         }else{
                             getFragmentManager().beginTransaction().replace(R.id.contenedorPrincipal,new DetalleFragment()).addToBackStack(null).commit();
@@ -227,7 +227,7 @@ public class ListadoFragment extends Fragment {
                 Toast.makeText(getActivity(), "ningun resultado", Toast.LENGTH_SHORT).show();
             }
         }catch (Exception e){
-            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+
         }
     }
 

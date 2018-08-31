@@ -19,7 +19,48 @@ public class Conexion extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table turismo (id integer primary key autoincrement, nombre text,descripcionCorta text,ubicacion text, descripcion text,latitud text,longitud text,categoria text,foto text)");
         cargarSitios(db);
+        cargarHoteles(db);
+        cargarRestaurantes(db);
 
+    }
+
+    private void cargarHoteles(SQLiteDatabase db) {
+        db.execSQL("insert into turismo(nombre,descripcionCorta,ubicacion,descripcion,latitud,longitud,categoria,foto) values" +
+                "('Hotel Continental Bluedoors','Hotel sofisticado con un bar restaurante moderno y una cafetería, además de un gimnasio y un spa.'," +
+                "'Avenida Jiménez No. 4 - 16\n Candelaria - Centro Historico'," +
+                "'Este elegante hotel con todo suites, situado a 4 minutos a pie de los objetos de oro del Museo del Oro, también se encuentra a 8 minutos a pie de las obras de arte del Museo Botero y a 11 minutos a pie de la Plaza de Bolívar, la plaza principal de la ciudad.\n" +
+                "Las luminosas y modernas suites disponen de Wi-Fi gratis, televisiones de pantalla plana y minibares, además de cocinas y salas de estar.\n" +
+                "El aparcamiento es gratuito. El desayuno se ofrece por un suplemento. Entre el resto de instalaciones que se incluyen en el hotel se encuentran una panadería cafetería, un bar restaurante moderno con terraza, un gimnasio y un spa.'," +
+                "'4.6010598','-74.0705079','hoteles','"+ R.drawable.hotelcontinentals+"'),"+
+
+                "('Hotel Tequendama y centro de convenciones','El Hotel Tequendama Bogotá, ubicado en pleno centro de Bogotá y a tan sólo 15 minutos del Aeropuerto Internacional El Dorado'," +
+                "'Cra. 10 #26-21, Bogotá, Cundinamarca'," +
+                "'El Hotel Tequendama Bogotá, ubicado en pleno centro de Bogotá y a tan sólo 15 minutos del Aeropuerto Internacional El Dorado, ofrece todos los servicios de un hotel 5 estrellas.\n" +
+                "\n" +
+                "Dispone de 573 habitaciones de estilo clásico totalmente reformadas y dotadas con la última tecnología, todo lo necesario para garantizar el máximo confort de nuestros clientes.\n" +
+                "Además, el hotel ofrece wifi gratuito, restaurante, spa y 39 salones que lo convierten en la mejor opción para celebrar cualquier tipo de reunión de negocios o evento empresarial en Bogotá.'," +
+                "'4.6128583','-74.0728357','hoteles','"+ R.drawable.hoteltequendama+"')"
+
+
+        );
+    }
+
+    private void cargarRestaurantes(SQLiteDatabase db) {
+
+        db.execSQL("insert into turismo(nombre,descripcionCorta,ubicacion,descripcion,latitud,longitud,categoria,foto) values" +
+                "('Juana La Loca','Buenos cocteles, agradable grupos'," +
+                "'Calle 90 # 11-13, Bogotá'," +
+                "' Del primer menú de Juana La Loca quedan pocos platillos. Los chicharrones de cochinillo con lima y jalapeño son de los pocos que sobreviven a ese difícil comienzo, hace dos años. De ese momento quedarán otros cinco platos, como clásicos de siempre –dice Rafael Londoño, al frente de la marca–. Pero, pasados unos ocho meses de funcionamiento empezamos el proceso de reformar la carta”.\n" +
+                "Londoño recuerda que se estrenó en el mundo de los restaurantes con Juana la Loca, cuando se asoció con el grupo Tragaluz de Barcelona. Pero no fue tan sencillo traer las cosas que eran exitosas en la ciudad catalana a Bogotá.'," +
+                "'4.672065','-74.05126','restaurantes','"+ R.drawable.juanalaloca+"'),"+
+
+
+                "('La fragata Giratoria','El Restaurante La Fragata Giratorio es un sitio en donde se puede degustar comida de excelencia a base de productos marinos.'," +
+                "'Calle 100 # 8A-55 Piso 12. W.T.C'," +
+                "'El Restaurante La Fragata Giratorio es un sitio en donde se puede degustar comida de excelencia a base de productos marinos. Su calidad está garantizada con una tradición de más de cuarenta años en otras ciudades de Colombia. Desde el espacioso y sofisticado local, se alcanza una vista única del norte capitalino y sus cerros, lugar ideal para compartir con la familia, amigos o pasar el rato en solitario. En su carta se destaca el famoso plato Langostino Fragata, acompañado de arroz con coco, plátano gratinado y una salsa exclusiva de la casa. Otras de sus creaciones son el seviche costeño, el seviche peruano, los rollos de anguila y el más completo de todos. langosta 3 sabores. La opción de entrante más solicitada es la sopa caldereta de cangrejos y, para el postre, se ofrecen opciones ligeras, como el postre de natas y la torta de café. La oferta del menú infantil da la oportunidad de reunirse para festejos de todo tipo. Además del comedor, cuenta con un café y una barra de sushi. En el restaurante se celebran festivales de comida nacional e internacional a los que asisten cocineros y chefs extranjeros, y en los que se presentan recetas que enriquecen el menú de La Fragata Giratorio todos los años.'," +
+                "'4.6810056','-74.04333','restaurantes','"+ R.drawable.fragata+"')"
+
+        );
     }
 
     private void cargarSitios(SQLiteDatabase db) {
@@ -39,7 +80,7 @@ public class Conexion extends SQLiteOpenHelper{
                 "- La biblioteca Virgilio Barco\n" +
                 "- La Unidad Deportiva El Salitre\n" +
                 "- El Salitre Mágico\n" +
-                "- El Jardín Botánico','4.5981259','--74.0782322','sitios','"+R.drawable.plazadebolivar+"'),"+
+                "- El Jardín Botánico','4.5981259','-74.0782322','sitios','"+R.drawable.plazadebolivar+"'),"+
 
                 "('Centro Comercial Andino','El Centro Comercial Andino es el corazón de una de las zonas preferidas por los bogotanos y extranjeros','Cra. 11 #82-71, Bogotá, Cundinamarca','El Centro Comercial Andino es el corazón de una de las zonas preferidas por los bogotanos y extranjeros, y es reconocido como el Centro Comercial más exclusivo de la ciudad. \n" +
                 "\n" +

@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity
 
         Conexion conexion=new Conexion(this);
         SQLiteDatabase db =conexion.getReadableDatabase();
+
+        Fragment fragment=new InicioFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.contenedorPrincipal,fragment).commit();
     }
 
     @Override
