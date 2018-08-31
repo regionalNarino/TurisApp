@@ -1,15 +1,24 @@
 package com.example.worldskills.turisapp;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.worldskills.turisapp.Other.Conexion;
+import com.example.worldskills.turisapp.Other.Lugares;
+import com.example.worldskills.turisapp.Other.RecyclerAdapter;
 import com.example.worldskills.turisapp.Other.Variables;
+
+import java.util.ArrayList;
 
 
 /**
@@ -63,16 +72,51 @@ public class ListadoFragment extends Fragment {
         }
     }
     View vista;
+    ArrayList<Lugares> listaLugares;
+    RecyclerView recycler;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         vista= inflater.inflate(R.layout.fragment_listado, container, false);
-
-        verificarCategoria();
+        recycler=vista.findViewById(R.id.recyclerview);
+        cargarLista();
 
         return vista;
+    }
+
+    private void cargarLista() {
+
+        listaLugares=new ArrayList<>();
+        String cadenaSQL="select * from turismo where categoria=";
+        if (Variables.categoria.equals("sitios")){
+            cadenaSQL+="'sitios'";
+            Toast.makeText(getActivity(), "sitios", Toast.LENGTH_SHORT).show();
+        }
+        if (Variables.categoria.equals("hoteles")){
+            cadenaSQL+="'hoteles'";
+        }
+        if (Variables.categoria.equals("restaurantes")){
+            cadenaSQL+="'restaurantes'";
+        }
+
+        Conexion conexion=new Conexion(getActivity());
+        SQLiteDatabase db=conexion.getReadableDatabase();
+        Cursor cursor=db.rawQuery(cadenaSQL,null);
+        if (cursor!=null){
+            Toast.makeText(getActivity(), "cargando", Toast.LENGTH_SHORT).show();
+            while (cursor.moveToNext()){
+                listaLugares.add(new Lugares(cursor.getString(0),cursor.getString(0),cursor.getString(0),
+                        cursor.getString(0),cursor.getString(0),cursor.getString(0),cursor.getString(0),cursor.getString(0)));
+            }
+            recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+            RecyclerAdapter adapter=new RecyclerAdapter(listaLugares);
+            recycler.setAdapter(adapter);
+
+        }else{
+            Toast.makeText(getActivity(), "ningun resultado", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void verificarCategoria() {
@@ -80,10 +124,10 @@ public class ListadoFragment extends Fragment {
             Toast.makeText(getActivity(), "sitios", Toast.LENGTH_SHORT).show();
         }
         if (Variables.categoria.equals("hoteles")){
-            Toast.makeText(getActivity(), "restaurantes", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "hoteles", Toast.LENGTH_SHORT).show();
         }
         if (Variables.categoria.equals("restaurantes")){
-            Toast.makeText(getActivity(), "hoteles", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "restaurates", Toast.LENGTH_SHORT).show();
         }
     }
 
