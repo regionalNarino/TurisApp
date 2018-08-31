@@ -20,7 +20,8 @@ import com.example.worldskills.turisapp.Other.Conexion;
 import com.example.worldskills.turisapp.Other.Variables;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener ,InicioFragment.OnFragmentInteractionListener,ListadoFragment.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener ,InicioFragment.OnFragmentInteractionListener,ListadoFragment.OnFragmentInteractionListener
+,DetalleFragment.OnFragmentInteractionListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

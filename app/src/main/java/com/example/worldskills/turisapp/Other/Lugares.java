@@ -4,6 +4,7 @@ public class Lugares {
 
     private String id;
     private String nombre;
+    private String descripcionCorta;
     private String ubicacion;
     private String descripcion;
     private String latitud;
@@ -11,9 +12,10 @@ public class Lugares {
     private String categoria;
     private String foto;
 
-    public Lugares(String id, String nombre, String ubicacion, String descripcion, String latitud, String longitud, String categoria, String foto) {
+    public Lugares(String id, String nombre, String descripcionCorta, String ubicacion, String descripcion, String latitud, String longitud, String categoria, String foto) {
         this.id = id;
         this.nombre = nombre;
+        this.descripcionCorta = descripcionCorta;
         this.ubicacion = ubicacion;
         this.descripcion = descripcion;
         this.latitud = latitud;
@@ -84,5 +86,13 @@ public class Lugares {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public String getDescripcionCorta() {
+        return descripcionCorta;
+    }
+
+    public void setDescripcionCorta(String descripcionCorta) {
+        this.descripcionCorta = descripcionCorta;
     }
 }

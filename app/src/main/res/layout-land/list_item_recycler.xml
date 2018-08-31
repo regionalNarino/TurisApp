@@ -8,7 +8,7 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_margin="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,24 +20,22 @@
 
             <ImageView
                 android:id="@+id/imagenLugar"
-                android:layout_width="103dp"
-                android:layout_height="92dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_width="53dp"
+                android:layout_height="52dp"
                 android:scaleType="fitXY"
-                android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/monserrate" />
 
             <TextView
                 android:id="@+id/nombreLugar"
-                android:layout_width="232dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="Nombre del lugar"
                 android:textStyle="bold"
+                android:textSize="10dp"
                 app:layout_constraintStart_toEndOf="@+id/imagenLugar"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,15 +46,17 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="Descripcion"
+                android:visibility="invisible"
                 app:layout_constraintStart_toEndOf="@+id/imagenLugar"
                 app:layout_constraintTop_toBottomOf="@+id/nombreLugar" />
 
             <TextView
                 android:id="@+id/direccionLugar"
                 android:layout_width="228dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginTop="8dp"
                 android:text="Direccion"
+                android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="@+id/descripcionLugar"
                 app:layout_constraintTop_toBottomOf="@+id/descripcionLugar" />
         </android.support.constraint.ConstraintLayout>
