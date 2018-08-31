@@ -1,8 +1,11 @@
 package com.example.worldskills.turisapp;
 
+import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,9 +16,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import com.example.worldskills.turisapp.Other.Conexion;
+import com.example.worldskills.turisapp.Other.Variables;
 
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener ,InicioFragment.OnFragmentInteractionListener,ListadoFragment.OnFragmentInteractionListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +45,9 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Conexion conexion=new Conexion(this);
+        SQLiteDatabase db =conexion.getReadableDatabase();
     }
 
     @Override
@@ -80,22 +88,41 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        boolean seleccionado=false;
+        Fragment fragment = null;
+
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            fragment=new InicioFragment();
+            seleccionado=true;
         } else if (id == R.id.nav_gallery) {
+            fragment=new ListadoFragment();
+            Variables.categoria="sitios";
+            seleccionado=true;
 
         } else if (id == R.id.nav_slideshow) {
+            fragment=new ListadoFragment();
+            Variables.categoria="hoteles";
+            seleccionado=true;
 
         } else if (id == R.id.nav_manage) {
+            fragment = new ListadoFragment();
+            Variables.categoria="restaurantes";
+            seleccionado = true;
 
-        } else if (id == R.id.nav_share) {
+        }
 
-        } else if (id == R.id.nav_send) {
-
+        if (seleccionado==true){
+            getSupportFragmentManager().beginTransaction().replace(R.id.contenedorPrincipal,fragment).commit();
+            seleccionado=false;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
