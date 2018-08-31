@@ -106,7 +106,9 @@ public class ListadoFragment extends Fragment {
     private void cargarDatosLand() {
         Variables.tipoLista="list";
         Variables.land=true;
+        Variables.id="1";
         cargarLista();
+        cargarDetalle();
     }
 
     private void cargarGrid() {
@@ -241,7 +243,7 @@ public class ListadoFragment extends Fragment {
         cursor.moveToNext();
         imagen.setImageResource(Integer.parseInt(cursor.getString(8)));
         lblNombre.setText(cursor.getString(1));
-        lblNombre.setText(cursor.getString(4));
+        lblDescripcion.setText(cursor.getString(4));
     }
 
     private void verificarCategoria() {
